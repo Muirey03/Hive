@@ -165,8 +165,8 @@ static BOOL hiveVisible;
     lockView = MSHookIvar<SBUIPasscodeLockViewWithKeypad*>(self, "_passcodeLockView");
     if (lockView)
     {
-        UIView* usePassBtn1 = MSHookIvar<UIView*>(lockView, "_touchIDUsePasscodeButton");
-        UIView* usePassBtn2 = MSHookIvar<UIView*>(lockView, "_faceIDUsePasscodeButton");
+        UIView* usePassBtn1 = [lockView safeValueForKey:@"_touchIDUsePasscodeButton"];
+        UIView* usePassBtn2 = [lockView safeValueForKey:@"_faceIDUsePasscodeButton"];
         if (!isViewVisible(usePassBtn1) && !isViewVisible(usePassBtn2))
         {
             [self createHive:NO];

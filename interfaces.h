@@ -23,6 +23,10 @@
 -(id)objectForKey:(id)arg1 inDomain:(id)arg2;
 @end
 
+@interface NSObject (internal)
+-(id)safeValueForKey:(id)arg1;
+@end
+
 #pragma mark new classes
 @interface HexagonView : UIView
 @property (nonatomic, readonly) UIBezierPath* path;
