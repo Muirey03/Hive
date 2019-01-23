@@ -216,3 +216,28 @@ NSArray* createButtonsUnderBtn(UIView* hex, UIColor* mainColor)
 
     return @[left, centre, right];
 }
+
+BOOL isViewVisible(UIView* v)
+{
+    if (v == nil || v.superview == nil)
+    {
+        return NO;
+    }
+    UIView* current = v;
+    while (YES)
+    {
+        if (current)
+        {
+            if (current.hidden || current.alpha == 0)
+            {
+                return NO;
+            }
+            current = current.superview;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return YES;
+}

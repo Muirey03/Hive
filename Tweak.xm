@@ -167,7 +167,7 @@ static BOOL hiveVisible;
     {
         UIView* usePassBtn1 = MSHookIvar<UIView*>(lockView, "_touchIDUsePasscodeButton");
         UIView* usePassBtn2 = MSHookIvar<UIView*>(lockView, "_faceIDUsePasscodeButton");
-        if (usePassBtn1.superview.alpha == 0 && usePassBtn2.superview.alpha == 0)
+        if (!isViewVisible(usePassBtn1) && !isViewVisible(usePassBtn2))
         {
             [self createHive:NO];
         }
