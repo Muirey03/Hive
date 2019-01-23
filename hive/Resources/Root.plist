@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Colours</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>CSColorDisplayCell</string>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>mainColor</string>
+			<key>label</key>
+			<string>Main Colour</string>
+			<key>fallback</key>
+			<string>00A1CA</string>
+			<key>alpha</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>CSColorDisplayCell</string>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>lblColor</string>
+			<key>label</key>
+			<string>Text Colour</string>
+			<key>fallback</key>
+			<string>FFFFFF</string>
+			<key>alpha</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>CSColorDisplayCell</string>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>separatorColor</string>
+			<key>label</key>
+			<string>Separator Colour</string>
+			<key>fallback</key>
+			<string>4CFFFFFF</string>
+			<key>alpha</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Contrast</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>min</key>
+			<real>0</real>
+			<key>max</key>
+			<real>2</real>
+			<key>showValue</key>
+			<true/>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>20</integer>
+			<key>default</key>
+			<real>1</real>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>hiveContrast</string>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>useUnlockAnim</string>
+			<key>label</key>
+			<string>Use Hive Unlock Animation</string>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Unlock animation duration</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>min</key>
+			<real>0</real>
+			<key>max</key>
+			<real>1.5</real>
+			<key>showValue</key>
+			<true/>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>30</integer>
+			<key>default</key>
+			<real>0.4</real>
+			<key>defaults</key>
+			<string>com.muirey03.hive</string>
+			<key>key</key>
+			<string>unlockDuration</string>
+			<key>PostNotification</key>
+			<string>com.muirey03.hive-prefsChanged</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>All donations are greatly appreciated</string>
+		</dict>
+		<dict>
+		    <key>cellClass</key>
+		    <string>HBLinkTableCell</string>
+		    <key>label</key>
+		    <string>Donate to Muirey03</string>
+		    <key>url</key>
+		    <string>https://www.paypal.me/Muirey03Dev</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Created by</string>
+		</dict>
+		<dict>
+		    <key>cellClass</key>
+		    <string>HBTwitterCell</string>
+		    <key>label</key>
+		    <string>Muirey03</string>
+		    <key>user</key>
+		    <string>Muirey03</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Hive</string>
+</dict>
+</plist>
