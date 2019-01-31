@@ -77,6 +77,9 @@
 
 static NSMutableArray* oldBtns = [[NSMutableArray alloc] initWithCapacity:10];
 static SBUIPasscodeLockViewWithKeypad* lockView;
+static NSMutableArray* availableNos;
+static BOOL dummyPassInstalled;
+static BOOL scramblePassInstalled;
 
 @implementation HexagonButton
 -(instancetype)initWithOrigin:(CGPoint)o width:(CGFloat)w
@@ -135,8 +138,18 @@ static SBUIPasscodeLockViewWithKeypad* lockView;
 
 -(void)setButtonNo:(unsigned int)arg1
 {
-    numLbl.text = [NSString stringWithFormat:@"%d", (arg1 == 9 ? 0 : arg1+1)];
-    _buttonNo = arg1;
+    unsigned int displayNo = (arg1 == 9 ? 0 : arg1+1);
+    if (dummyPassInstalled || scramblePassInstalled)
+    {
+        NSInteger index = arc4random_uniform(availableNos.count);
+        displayNo = [availableNos[index] integerValue];
+        [availableNos removeObjectAtIndex:index];
+    }
+    numLbl.text = [NSString stringWithFormat:@"%d", displayNo];
+    if (!scramblePassInstalled)
+        _buttonNo = arg1;
+    else
+        _buttonNo = (displayNo == 0 ? 9 : displayNo-1);
 }
 
 -(void)setFillColor:(UIColor*)arg1
@@ -178,6 +191,7 @@ static BOOL hiveVisible;
 {
     %orig;
     hiveVisible = NO;
+    availableNos = [@[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9] mutableCopy];
 }
 
 %new
@@ -392,3 +406,10 @@ static BOOL hiveVisible;
     }
 }
 %end
+
+%ctor
+{
+    dummyPassInstalled = isDummyPassInstalled();
+    scramblePassInstalled = isScramblePassInstalled();
+    availableNos = [@[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9] mutableCopy];
+}
