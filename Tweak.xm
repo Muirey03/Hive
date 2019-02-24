@@ -172,15 +172,13 @@ static BOOL scramblePassInstalled;
 static BOOL hiveVisible;
 
 %hook SBDashBoardPasscodeViewController
--(void)viewDidLoad
+-(void)viewWillAppear:(BOOL)arg1
 {
     %orig;
     lockView = MSHookIvar<SBUIPasscodeLockViewWithKeypad*>(self, "_passcodeLockView");
     if (lockView)
     {
-        UIView* usePassBtn1 = [lockView safeValueForKey:@"_touchIDUsePasscodeButton"];
-        UIView* usePassBtn2 = [lockView safeValueForKey:@"_faceIDUsePasscodeButton"];
-        if (!isViewVisible(usePassBtn1) && !isViewVisible(usePassBtn2))
+        if (!isViewVisible(lockView.biometricAuthenticationView))
         {
             [self createHive:NO];
         }
@@ -213,8 +211,9 @@ static BOOL hiveVisible;
         if (animated) lockView.alpha = 0;
 
         /* Create buttons: */
+        CGFloat firstY = pad.superview.frame.origin.y;
         CGFloat w = widthForStack(pad.frame.size.width, 3);
-        CGPoint o1 = CGPointMake((lockView.frame.size.width - w) / 2, pad.superview.frame.origin.y);
+        CGPoint o1 = CGPointMake((lockView.frame.size.width - w) / 2, firstY);
         HexagonButton* h1 = [[HexagonButton alloc] initWithOrigin:o1 width:w];
         h1.fillColor = colorForHexagon(h1, mainColor);
         [lockView addSubview:h1];
@@ -370,6 +369,16 @@ static BOOL hiveVisible;
 
 %hook SBUIPasscodeLockViewWithKeypad
 -(void)_usePasscodeButtonHit
+{
+    %orig;
+    SBDashBoardPasscodeViewController* vc = (SBDashBoardPasscodeViewController*)[self _viewControllerForAncestor];
+    if ([vc isKindOfClass:%c(SBDashBoardPasscodeViewController)])
+    {
+        [vc createHive:YES];
+    }
+}
+
+-(void)passcodeBiometricAuthenticationViewUsePasscodeButtonHit:(id)arg1
 {
     %orig;
     SBDashBoardPasscodeViewController* vc = (SBDashBoardPasscodeViewController*)[self _viewControllerForAncestor];

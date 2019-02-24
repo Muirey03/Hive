@@ -8,6 +8,7 @@
 
 @interface SBUIPasscodeLockViewWithKeypad : UIView
 @property (nonatomic,retain) UILabel* statusTitleView;
+@property (nonatomic,retain) UIView* biometricAuthenticationView;
 -(id)_numberPad;
 -(void)passcodeLockNumberPad:(id)arg1 keyDown:(id)arg2;
 -(void)passcodeLockNumberPad:(id)arg1 keyUp:(id)arg2;
