@@ -178,7 +178,8 @@ static BOOL hiveVisible;
     lockView = MSHookIvar<SBUIPasscodeLockViewWithKeypad*>(self, "_passcodeLockView");
     if (lockView)
     {
-        if (!isViewVisible(lockView.biometricAuthenticationView))
+        long long state = lockView.passcodeLockViewState;
+        if (state == 1)
         {
             [self createHive:NO];
         }
